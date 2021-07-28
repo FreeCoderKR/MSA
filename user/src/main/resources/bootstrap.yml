@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    config:
+      uri: http://127.0.0.1:8888
+      name: userservice
+      #configserver의 application name을 직접 언급하면, configserver의 application.yml 파일을 직접 조회.
+#  profiles:
+#    active: dev

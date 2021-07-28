@@ -1,0 +1,70 @@
+server:
+  port: 8000
+
+eureka:
+  instance:
+    hostname: 127.0.0.1
+    instanceId: ${spring.application.name}:${server.port}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+
+spring:
+  application:
+    name: apigateway
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+  cloud:
+    gateway:
+      routes:
+        - id: userservice
+          uri: lb://USERSERVICE
+#          predicates: 이 요청이 오면 설정에 세팅된(filter) 작업을 실행한다는 뜻
+          predicates:
+            - Path=/userservice/login, /userservice/register
+            - Method=POST
+          filters:
+#          post로 전달되는 데이터 값을 새로운 데이터처럼 인식하기 위해
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/userservice/(?<segment>.*), /$\{segment}
+
+        - id: userservice
+          uri: lb://USERSERVICE
+          predicates:
+            - Path=/userservice/actuator/**, /userservice/admin/**
+            - Method=POST, GET
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/userservice/(?<segment>.*), /$\{segment}
+
+        - id: userservice
+          uri: lb://USERSERVICE
+          predicates:
+            - Path=/userservice/**
+            - Method=GET, POST, PUT, PATCH
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/userservice/(?<segment>.*), /$\{segment}
+            - AuthorizationFilter
+
+
+        - id: catalogservice
+          uri: lb://CATALOGSERVICE
+          predicates:
+            - Path=/catalogservice/**
+
+        - id: orderservice
+          uri: lb://ORDERSERVICE
+          predicates:
+            - Path=/orderservice/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, httptrace, busrefresh

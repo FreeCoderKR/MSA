@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    config:
+      uri: http://127.0.0.1:8888
+      name: ecommerce
+      # name에 ecommerce를 쓰면 해당 uri의 ecommerce.yml 파일을 읽어오고, application name인 configserver를 쓰면 application.yml 파일을 읽어온다.
+
+#  profiles:
+#    active: dev

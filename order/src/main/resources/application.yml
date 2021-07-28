@@ -1,0 +1,44 @@
+
+
+server:
+  port: 0
+
+spring:
+  application:
+    name: orderservice
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    generate-ddl: true
+  datasource:
+    initialization-mode: always
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:msa
+    username: sa
+
+eureka:
+  instance:
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans
+greeting:
+  message: Welcome to the simple E-commerce
+
+#logging:
+#  level:
+#    com.msa.order: DEBUG

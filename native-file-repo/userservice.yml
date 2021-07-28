@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:msa
+    username: sa
+    password: '{cipher}AQApsZErx63ZGnEK4xDYqop48h1fE3KmGuL/WQg7mLr2UBtG5fxJXx+Bwadu2jtfJDIqESSbepuume/iJNPMsdCiHdm5v6oFbCf7dfFwybFRrNZoVzDSpFd7rTm9wVqSoQOji3z5slFDWrX3Ng9djRFEPbwwSLQz7/r16w6gFU826Hxfs4nE/vu+FSPUUmmnktPaXy1UC/BATsDSD6KtsUk5+KT8NYDxtMKVI+ZYBW8lSoU7RfbtzjYCiQl/DVouggvd59xsnUX4YMMX+t6XOrSZIiCL1EKd/5THe4ySQiz/MOdyFew56Wk3ymLwDLW4T3x85AURVfE0hKRq+mWTBCNBIOS6PtgpWBtsXmMWgoNtYD6n7DkmBKavsztpP7EmxBk='
+token:
+  secret: '{cipher}AQBcHZUcbLiKlCvSLlzpVHXpWFZGO2gZTxNLfNK2gK8bt2P7YwePqQ0uBlSZogVCvJcEOiOC5zhhVE1yf+89nWok5YmWTf2t38ZqxtQytUgmZPWfrkqQDQFeY3Sfp2nKVNfU5uw+jT9dhELfcp0Zy8gh2f64t/eKRVk1VbmUJgl7AS/iMnSFr+Ofa/HRx0gCSdRjMFf4hhKe4MPrKy3b62N/IRvm2GK8csTOY3Bw8oljoRIsIsLjOrtSIyF+MJidS7R0VCyvWYzTF5T/k0a31h4kU63lTsTjO6kHimFLTKYVplWP3H7NdgAvjp8kZZKnXYyDzwKc5kz4ii1POwK2T1rFV1Ql1RMpm5HOOOPco+/FZX9lcdMPDRod7imwxOArNbw8zUszouKbqwspvO3GLRY8'
+  expiration: 86400000
+
+orderservice:
+  url: http://ORDERSERVICE/orderservice/%s/orders

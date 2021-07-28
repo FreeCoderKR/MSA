@@ -1,0 +1,6 @@
+encrypt:
+#  key: abcdefghijklmnopqrstuvwxyz1234567890
+  key-store:
+    location: file:///${user.home}/study/msa/keystore/msakey.jks
+    password: test1234
+    alias: msakey

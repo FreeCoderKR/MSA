@@ -1,0 +1,3 @@
+token:
+  secret: native_token_userservice_dev
+  expiration: 86400000
